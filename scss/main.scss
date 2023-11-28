@@ -1,0 +1,54 @@
+@use "configes" as *;
+@use "utilities" as *;
+@use "sass:map";
+
+header {
+  @include max-w(40rem);
+  text-align: center;
+  @include flow-content;
+
+  h1,
+  h2 {
+    font-size: clamp(1.5rem, 3.5vw, 3rem);
+  }
+
+  p {
+    font-size: 1rem;
+    padding-inline: 1rem;
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  padding: 2rem;
+  margin-top: 2rem;
+  gap: 2.5rem;
+  .card {
+    font-size: 1rem;
+    @include max-w;
+    box-shadow: 0px 0px 17px -3px rgba(0, 0, 0, 0.1);
+    padding: 1.3rem;
+    @include flow-content;
+    border-radius: 12px;
+
+    div {
+      display: flex;
+      justify-content: end;
+    }
+  }
+
+  @each $nth, $color in $border-colors {
+    .card:nth-child(#{$nth}) {
+      @include border-top($color);
+    }
+  }
+}
+
+@media (width > 759px) {
+  @include mid-screen;
+}
+
+@media (width > 1024px) {
+  @include large-screen;
+}

@@ -1,0 +1,53 @@
+@use "utilities" as *;
+
+$colors: (
+  neutral: (
+    100: hsl(234, 12%, 34%),
+    200: hsl(229, 6%, 66%),
+    300: hsl(0, 0%, 98%),
+  ),
+);
+
+$border-colors: (
+  1: hsl(0, 78%, 62%),
+  2: hsl(180, 62%, 55%),
+  3: hsl(34, 97%, 64%),
+  4: hsl(212, 86%, 64%),
+);
+
+$font-weights: 100, 200, 300, 400, 500, 600, 700, 800;
+
+:root {
+  @each $color, $shades in $colors {
+    @each $shade, $value in $shades {
+      --clr-#{$color}-#{$shade}: #{$value};
+    }
+  }
+}
+
+@each $weight, $shade in $font-weights {
+  .text-#{$weight} {
+    font-weight: $weight;
+  }
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  color: var(--clr-neutral-100);
+  padding-block: 4rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

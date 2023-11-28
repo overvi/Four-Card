@@ -1,0 +1,42 @@
+@use "sass:map";
+@mixin max-w($width: 25rem) {
+  max-width: $width;
+  margin: auto;
+}
+
+@mixin flow-content($margin: 1rem) {
+  & > * + * {
+    margin-top: $margin;
+  }
+}
+
+@mixin border-top($color) {
+  border-top: 5px solid $color;
+}
+
+@mixin mid-screen {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+
+    &.card:last-child {
+      grid-column: 2;
+    }
+  }
+}
+
+@mixin large-screen {
+  @include mid-screen;
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 4rem;
+    .card:first-child {
+      grid-column: 2;
+    }
+    .card:nth-child(3) {
+      transform: translateY(-50%);
+    }
+    .card:nth-child(2) {
+      transform: translateY(50%);
+    }
+  }
+}
